@@ -128,7 +128,9 @@ void editHuman(Human &human) {
 int main() {
     Human human("andrey", 5, 15);
 
-    Human secondHuman("andrey", 3, 15);
+    Human secondHuman("test", 3, 15);
 
     editHuman(human);
+
+    secondHuman.Describe();
 }
