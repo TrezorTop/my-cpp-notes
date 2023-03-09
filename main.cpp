@@ -1,136 +1,107 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 
-class Human {
-private:
-    string name;
-    int age;
-    int weight;
+int strlen(char* str) {
+    int counter = 0;
 
-    int *livedAges;
+    while (str[counter] != '\0') {
+        counter++;
+    }
+
+    return counter;
+}
+
+class String {
+private:
+    char* str = nullptr;
+    int length;
+
+    void copyChars(char*& to, char* from) {
+        int length = strlen(from);
+
+        to = new char[length + 1];
+
+        for (int i = 0; i < length; i++) {
+            to[i] = from[i];
+        }
+
+        to[length] = '\0';
+    }
 
 public:
-    Human() {
-//        cout << "Constructor " << this << endl;
+    String() {
 
-        this->name = "Unknown";
-        this->age = 0;
-        this->weight = 0;
     }
 
-    Human(string name, int age, int weight) {
-        this->name = name;
-        this->age = age;
-        this->weight = weight;
-        this->livedAges = new int[age];
+    String(char* str) {
+        this->length = strlen(str);
 
-        for (int i = 0; i < age; i++) {
-            livedAges[i] = i;
-        }
+        this->copyChars(this->str, str);
     }
 
-    string GetName() {
-        return this->name;
+    ~String() {
+        delete[] this->str;
     }
 
-    void SetName(string name) {
-        this->name = name;
-    }
+    String& operator=(const String& other) {
+        if (&this->str == &other.str) return *this;
 
-    int GetAge() {
-        return this->age;
-    }
+        delete[] this->str;
 
-    void SetAge(int age) {
-        this->age = age;
-    }
+        this->copyChars(this->str, other.str);
 
-    int GetWeight() {
-        return this->weight;
-    };
-
-    void SetWeight(int weight) {
-        this->weight = weight;
-    }
-
-    void Describe() {
-        cout << "Human" << endl;
-        cout << "name" << '\t' << this->name << endl;
-        cout << "age" << '\t' << this->age << endl;
-        cout << "weight" << '\t' << this->weight << endl;
-    }
-
-    Human(const Human &other) {
-//        cout << "Copy Constructor " << this << endl;
-
-        this->name = other.name;
-        this->age = other.age;
-        this->weight = other.weight;
-        this->livedAges = new int[other.age];
-        for (int i = 0; i < other.age; i++) {
-            this->livedAges[i] = i;
-        }
-    }
-
-    Human &operator=(const Human &other) {
-//        cout << "Operator '=' " << this << endl;
-
-        delete[] this->livedAges;
-
-        this->name = other.name;
-        this->age = other.age;
-        this->weight = other.weight;
-        this->livedAges = new int[other.age];
-        for (int i = 0; i < other.age; i++) {
-            this->livedAges[i] = i;
-        }
+        this->length = other.length;
 
         return *this;
     }
 
-    bool operator==(const Human &other) {
-        if (this->name != other.name || this->age != other.age || this->weight != other.weight)
-            return false;
+    String operator+(const String& other) {
+        String newStr;
 
-        for (int i = 0; i < age; ++i) {
-            if (this->livedAges[i] != other.livedAges[i]) return false;
+        int length = this->length + other.length;
+
+        newStr.str = new char[length + 1];
+
+        for (int i = 0; i < this->length; i++) {
+            newStr.str[i] = this->str[i];
         }
 
-        return true;
-    }
-
-    bool operator!=(const Human &other) {
-        if (this->name != other.name || this->age != other.age || this->weight != other.weight)
-            return true;
-
-        for (int i = 0; i < age; ++i) {
-            if (this->livedAges[i] != other.livedAges[i]) return true;
+        for (int i = 0; i < other.length; i++) {
+            newStr.str[i + this->length] = other.str[i];
         }
 
-        return false;
+        newStr.str[length] = '\0';
+        newStr.length = length;
+
+        return newStr;
     }
 
-    ~Human() {
-//        cout << "Destructor " << this << endl;
+    String(const String& other) {
+        this->copyChars(this->str, other.str);
 
-        delete[] livedAges;
+        this->length = other.length;
+    }
+
+    friend ostream& operator<<(ostream& os, const String& str);
+
+    int Length() {
+        return this->length;
     }
 };
 
-
-void editHuman(Human &human) {
-    human.SetName("Andrey");
+ostream& operator<<(ostream& os, const String& str)
+{
+    os << str.str;
+    return os;
 }
 
 int main() {
-    Human human("andrey", 5, 15);
+    String str = "Hello";
+    String str2 = " World";
 
-    Human secondHuman("test", 3, 15);
+    String str3 = str + str2;
 
-    editHuman(human);
-
-    secondHuman.Describe();
+    cout << str3 << endl;
 }

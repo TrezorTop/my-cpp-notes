@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-void printArray(const int *arr, const int size) {
+void printArray(const int* arr, const int size) {
     std::cout << "printArray" << std::endl;
     for (int i = 0; i < size; ++i) {
         std::cout << arr[i] << '\t';
@@ -9,14 +9,14 @@ void printArray(const int *arr, const int size) {
     std::cout << std::endl << std::endl;
 }
 
-void fillArray(int *const arr, const int size) {
+void fillArray(int* const arr, const int size) {
     for (int i = 0; i < size; ++i) {
         arr[i] = rand() % 20;
     }
 }
 
-void push(int *&arr, int &size, const int value, const int index) {
-    int *newArr = new int[++size];
+void push(int*& arr, int& size, const int value, const int index) {
+    int* newArr = new int[++size];
 
     for (int i = 0, j = 0; i < size; ++i) {
         if (i == index) {
@@ -32,8 +32,8 @@ void push(int *&arr, int &size, const int value, const int index) {
     arr = newArr;
 }
 
-void pushBack(int *&arr, int &size, const int value) {
-    int *newArr = new int[size + 1];
+void pushBack(int*& arr, int& size, const int value) {
+    int* newArr = new int[size + 1];
 
     for (int i = 0; i < size; ++i) {
         newArr[i] = arr[i];
@@ -46,8 +46,8 @@ void pushBack(int *&arr, int &size, const int value) {
     arr = newArr;
 }
 
-void pushStart(int *&arr, int &size, const int value) {
-    int *newArr = new int[size + 1];
+void pushStart(int*& arr, int& size, const int value) {
+    int* newArr = new int[size + 1];
 
     newArr[0] = value;
 
@@ -62,8 +62,8 @@ void pushStart(int *&arr, int &size, const int value) {
     arr = newArr;
 }
 
-void pop(int *&arr, int &size, const int index) {
-    int *newArr = new int[--size];
+void pop(int*& arr, int& size, const int index) {
+    int* newArr = new int[--size];
 
     for (int i = 0, j = 0; i < size; ++i, ++j) {
         if (i == index) {
@@ -77,8 +77,8 @@ void pop(int *&arr, int &size, const int index) {
     arr = newArr;
 }
 
-void popBack(int *&arr, int &size) {
-    int *newArr = new int[--size];
+void popBack(int*& arr, int& size) {
+    int* newArr = new int[--size];
 
     for (int i = 0; i < size; ++i) {
         newArr[i] = arr[i];
@@ -88,8 +88,8 @@ void popBack(int *&arr, int &size) {
     arr = newArr;
 }
 
-void popStart(int *&arr, int &size) {
-    int *newArr = new int[--size];
+void popStart(int*& arr, int& size) {
+    int* newArr = new int[--size];
 
     for (int i = 0; i < size; ++i) {
         newArr[i] = arr[i + 1];
