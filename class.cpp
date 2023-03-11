@@ -75,7 +75,7 @@ public:
         }
     }
 
-    Human& operator=(const Human& other) {
+    Human& operator =(const Human& other) {
 //        cout << "Operator '=' " << this << endl;
 
         delete[] this->livedAges;
@@ -91,7 +91,7 @@ public:
         return *this;
     }
 
-    bool operator==(const Human& other) {
+    bool operator ==(const Human& other) {
         if (this->name != other.name || this->age != other.age || this->weight != other.weight)
             return false;
 
@@ -102,7 +102,68 @@ public:
         return true;
     }
 
-    bool operator!=(const Human& other) {
+    Human operator +(const Human& other) {
+        Human human("child", 0, 0);
+        return human;
+    }
+
+    Human& operator ++() {
+        ++this->age;
+
+        delete[] livedAges;
+        this->livedAges = new int[age];
+        for (int i = 0; i < age; ++i) {
+            this->livedAges[i] = i;
+        }
+
+        return *this;
+    }
+
+    Human operator ++(int) {
+        Human temp(*this);
+
+        this->age++;
+
+        delete[] livedAges;
+        this->livedAges = new int[age];
+        for (int i = 0; i < age; ++i) {
+            this->livedAges[i] = i;
+        }
+
+        return temp;
+    }
+
+    Human& operator --() {
+        --this->age;
+
+        delete[] livedAges;
+        this->livedAges = new int[age >= 0 ? age : 0];
+        for (int i = 0; i < age; ++i) {
+            this->livedAges[i] = i;
+        }
+
+        return *this;
+    }
+
+    Human operator --(int) {
+        Human temp(*this);
+
+        this->age--;
+
+        delete[] livedAges;
+        this->livedAges = new int[age >= 0 ? age : 0];
+        for (int i = 0; i < age; ++i) {
+            this->livedAges[i] = i;
+        }
+
+        return temp;
+    }
+
+    int& operator [](int index) {
+        return this->livedAges[index];
+    }
+
+    bool operator !=(const Human& other) {
         if (this->name != other.name || this->age != other.age || this->weight != other.weight)
             return true;
 
@@ -130,7 +191,11 @@ int main() {
 
     Human secondHuman("test", 3, 15);
 
-    editHuman(human);
+    Human child = human + secondHuman;
 
-    secondHuman.Describe();
+    human++;
+
+    cout << human[2] << endl;
+
+    child.Describe();
 }

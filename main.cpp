@@ -45,7 +45,7 @@ public:
         delete[] this->str;
     }
 
-    String& operator=(const String& other) {
+    String& operator =(const String& other) {
         if (&this->str == &other.str) return *this;
 
         delete[] this->str;
@@ -57,7 +57,7 @@ public:
         return *this;
     }
 
-    String operator+(const String& other) {
+    String operator +(const String& other) {
         String newStr;
 
         int length = this->length + other.length;
@@ -84,15 +84,14 @@ public:
         this->length = other.length;
     }
 
-    friend ostream& operator<<(ostream& os, const String& str);
+    friend ostream& operator <<(ostream& os, const String& str);
 
     int Length() {
         return this->length;
     }
 };
 
-ostream& operator<<(ostream& os, const String& str)
-{
+ostream& operator <<(ostream& os, const String& str) {
     os << str.str;
     return os;
 }
