@@ -3,6 +3,7 @@
 
 using namespace std;
 
+class Apple;
 
 class Human {
 private:
@@ -62,6 +63,10 @@ public:
         cout << "age" << '\t' << this->age << endl;
         cout << "weight" << '\t' << this->weight << endl;
     }
+
+    static void TakeApple(Apple& apple);
+
+    static void EatApple(Apple& apple);
 
     Human(const Human& other) {
 //        cout << "Copy Constructor " << this << endl;
@@ -181,21 +186,57 @@ public:
     }
 };
 
+class Apple {
+    friend Human;
+
+private:
+    int weight;
+    string color;
+
+public:
+    static int count;
+
+    Apple(int weight, string color) {
+        this->weight = weight;
+        this->color = color;
+
+        Apple::count++;
+    }
+};
+
+int Apple::count;
 
 void editHuman(Human& human) {
     human.SetName("Andrey");
 }
 
+void Human::TakeApple(Apple& apple) {
+    if (Apple::count > 0)
+        cout << "Took an " << apple.color << " apple (weight: " << apple.weight << ", total count: " << Apple::count
+             << ')'
+             << endl;
+    else cout << "No more apples" << endl;
+}
+
+void Human::EatApple(Apple& apple) {
+    if (Apple::count > 0) {
+        --Apple::count;
+        cout << "Ate an " << apple.color << " apple (weight: " << apple.weight << ", total count: " << Apple::count
+             << ')'
+             << endl;
+    } else cout << "No more apples left" << endl;
+
+}
+
 int main() {
     Human human("andrey", 5, 15);
 
-    Human secondHuman("test", 3, 15);
+    Apple greenApple(221, "green");
+    Apple redApple(121, "red");
 
-    Human child = human + secondHuman;
+    human.TakeApple(greenApple);
+    human.EatApple(greenApple);
 
-    human++;
-
-    cout << human[2] << endl;
-
-    child.Describe();
+    human.EatApple(redApple);
+    human.EatApple(redApple);
 }
