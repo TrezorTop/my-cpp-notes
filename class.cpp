@@ -187,6 +187,7 @@ public:
 };
 
 class Apple {
+    static string* idsPool;
     friend Human;
 
 private:
@@ -194,13 +195,18 @@ private:
     string color;
 
 public:
+    int id;
     static int count;
 
     Apple(int weight, string color) {
+
+
         this->weight = weight;
         this->color = color;
 
         Apple::count++;
+
+        this->id = Apple::count;
     }
 };
 
@@ -234,9 +240,5 @@ int main() {
     Apple greenApple(221, "green");
     Apple redApple(121, "red");
 
-    human.TakeApple(greenApple);
-    human.EatApple(greenApple);
-
-    human.EatApple(redApple);
-    human.EatApple(redApple);
+    cout << greenApple.id << ' ' << redApple.id << endl;
 }
