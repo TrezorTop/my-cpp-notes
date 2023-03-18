@@ -191,22 +191,36 @@ class Apple {
     friend Human;
 
 private:
+    int id;
     int weight;
     string color;
-
-public:
-    int id;
     static int count;
 
+public:
+
     Apple(int weight, string color) {
-
-
         this->weight = weight;
         this->color = color;
 
         Apple::count++;
 
         this->id = Apple::count;
+    }
+
+    int GetId() {
+        return this->id;
+    }
+
+    string GetColor() {
+        return this->color;
+    }
+
+    static int GetCount() {
+        return Apple::count;
+    }
+
+    static void ChangeColor(Apple& apple, string color) {
+        apple.color = color;
     }
 };
 
@@ -240,5 +254,7 @@ int main() {
     Apple greenApple(221, "green");
     Apple redApple(121, "red");
 
-    cout << greenApple.id << ' ' << redApple.id << endl;
+    Apple::ChangeColor(redApple, "orange");
+
+    cout << redApple.GetColor() << endl;
 }
