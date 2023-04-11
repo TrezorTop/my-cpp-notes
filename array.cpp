@@ -42,7 +42,6 @@ void pushBack(int*& arr, int& size, const int value) {
     newArr[size++] = value;
 
     delete[] arr;
-
     arr = newArr;
 }
 
@@ -58,7 +57,6 @@ void pushStart(int*& arr, int& size, const int value) {
     size++;
 
     delete[] arr;
-
     arr = newArr;
 }
 

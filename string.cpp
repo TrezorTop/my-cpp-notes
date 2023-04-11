@@ -32,7 +32,7 @@ private:
 
 public:
     int Size() {
-        return length;
+        return this->length;
     }
 
     String() {

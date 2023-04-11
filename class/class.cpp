@@ -96,17 +96,6 @@ public:
         return *this;
     }
 
-    bool operator ==(const Human& other) {
-        if (this->name != other.name || this->age != other.age || this->weight != other.weight)
-            return false;
-
-        for (int i = 0; i < age; ++i) {
-            if (this->livedAges[i] != other.livedAges[i]) return false;
-        }
-
-        return true;
-    }
-
     Human operator +(const Human& other) {
         Human human("child", 0, 0);
         return human;
@@ -168,15 +157,19 @@ public:
         return this->livedAges[index];
     }
 
-    bool operator !=(const Human& other) {
+    bool operator ==(const Human& other) {
         if (this->name != other.name || this->age != other.age || this->weight != other.weight)
-            return true;
+            return false;
 
         for (int i = 0; i < age; ++i) {
-            if (this->livedAges[i] != other.livedAges[i]) return true;
+            if (this->livedAges[i] != other.livedAges[i]) return false;
         }
 
-        return false;
+        return true;
+    }
+
+    bool operator !=(const Human& other) {
+        return !this->operator ==(other);
     }
 
     ~Human() {
@@ -196,7 +189,35 @@ private:
     string color;
     static int count;
 
+    class Seed {
+    private:
+        int mass;
+
+    public:
+        Seed(int mass) {
+            this->mass = mass;
+        }
+
+        string GetInfo() {
+            return "Seed: mass = " + to_string(mass);
+        }
+    };
+
+    static const int SEEDS_LENGTH = 4;
+
+    Seed seeds[SEEDS_LENGTH]{
+            Seed(1),
+            Seed(2),
+            Seed(1),
+            Seed(2),
+    };
+
+
 public:
+    Apple() {
+        this->weight = 0;
+        this->color = "None";
+    }
 
     Apple(int weight, string color) {
         this->weight = weight;
@@ -205,6 +226,12 @@ public:
         Apple::count++;
 
         this->id = Apple::count;
+    }
+
+    void GetSeedsInfo() {
+        for (int i = 0; i < SEEDS_LENGTH; ++i) {
+            cout << this->seeds[i].GetInfo() << endl;
+        }
     }
 
     int GetId() {
@@ -256,5 +283,13 @@ int main() {
 
     Apple::ChangeColor(redApple, "orange");
 
-    cout << redApple.GetColor() << endl;
+    const int LENGTH = 2;
+
+    Apple* apples = new Apple[LENGTH];
+
+    apples[0] = redApple;
+
+    cout << apples[0].GetColor() << endl;
+
+    delete[] apples;
 }
