@@ -51,12 +51,43 @@ public:
     string subject;
 };
 
+class Car {
+public:
+    void Describe() {
+        cout << "This is part of car" << endl;
+    }
+
+    void Drive() {
+        cout << "Driving" << endl;
+    }
+};
+
+class Airplane {
+public:
+    void Describe() {
+        cout << "This is part of airplane" << endl;
+    }
+
+    void Fly() {
+        cout << "Flying" << endl;
+    }
+};
+
+class FlyingCar : public Car, public Airplane {
+
+};
+
 int main() {
-    Student student;
-    Professor professor;
+//    Student student;
+//    Professor professor;
+//
+//    student.SetName("Harry");
+//    professor.SetName("Hagrid");
+//
+//    professor.PrintMeta();
 
-    student.SetName("Harry");
-    professor.SetName("Hagrid");
+    FlyingCar flyingCar;
 
-    professor.PrintMeta();
+    flyingCar.Drive();
+    flyingCar.Car::Describe();
 }
