@@ -5,27 +5,48 @@
 
 using namespace std;
 
-int main() {
-    ofstream outFile;
+string filePath = filesystem::current_path().parent_path().string() + "/file/";
+string fileName = "example.txt";
 
-    string filePath = filesystem::current_path().parent_path().string() + "/file/";
-    string fileName = "example.txt";
+void writeFile() {
+    ofstream fout;
 
-    outFile.open(filePath + fileName, ofstream::app);
+    fout.open(filePath + fileName, ofstream::app);
 
-    if (!outFile.is_open()) {
+    if (!fout.is_open()) {
         cout << "Could not open file" << endl;
-        return 1;
+        return;
     }
 
-    outFile << "Hello, world!" << endl;
+    fout << "Hello, world!" << endl;
 
     string input;
     getline(cin, input);
 
-    outFile << input << endl;
+    fout << input << endl;
 
-    outFile.close();
+    fout.close();
+}
+
+void readFile() {
+    ifstream fin(filePath + fileName);
+
+    if (!fin.is_open()) {
+        cout << "Could not open file" << endl;
+        return;
+    }
+
+    string str;
+    while (getline(fin, str)) {
+        cout << str << endl;
+    }
+
+    fin.close();
+}
+
+int main() {
+//    writeFile();
+    readFile();
 
     return 0;
 }
