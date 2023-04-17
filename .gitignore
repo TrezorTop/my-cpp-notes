@@ -46,7 +46,6 @@
 
 # CMake
 cmake-build-*/
-cmake-build-debug
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
