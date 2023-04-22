@@ -49,11 +49,11 @@ cmake_ninja_workdir = C$:/Users/Andrey/CLionProjects/untitled/cmake-build-debug/
 
 build cmake_object_order_depends_target_untitled: phony || CMakeFiles/untitled.dir
 
-build CMakeFiles/untitled.dir/file/binary_file.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/Andrey/CLionProjects/untitled/file/binary_file.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\file\binary_file.cpp.obj.d
+build CMakeFiles/untitled.dir/linked_list/linked_list.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/Andrey/CLionProjects/untitled/linked_list/linked_list.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\linked_list\linked_list.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\file
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\linked_list
 
 
 # =============================================================================
@@ -63,7 +63,7 @@ build CMakeFiles/untitled.dir/file/binary_file.cpp.obj: CXX_COMPILER__untitled_D
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/file/binary_file.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/linked_list/linked_list.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir
