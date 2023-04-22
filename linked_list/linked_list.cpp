@@ -47,7 +47,7 @@ private:
     Node* head;
 
     Node* getNode(int index) {
-        if (index < 0 || index >= this->size) throw std::runtime_error("Given index is out of bounds");
+        if (index < 0 || index >= this->size) throw std::out_of_range("Given index is out of bounds");
 
         Node* targetNode = this->head;
 
@@ -94,7 +94,7 @@ void List<T>::push_front(T data) {
 
 template<typename T>
 void List<T>::pop_front() {
-    if (this->head == nullptr) throw std::runtime_error("List is empty");
+    if (this->head == nullptr) throw std::out_of_range("List is empty");
 
     Node* nodeToDelete = this->head;
 
@@ -120,7 +120,7 @@ void List<T>::push_back(T data) {
 
 template<typename T>
 void List<T>::pop_back() {
-    if (this->head == nullptr) throw std::runtime_error("List is empty");
+    if (this->head == nullptr) throw std::out_of_range("List is empty");
 
     Node* previous = this->getNode(size - 2);
 
