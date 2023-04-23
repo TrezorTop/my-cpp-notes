@@ -1,25 +1,21 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
 namespace first {
-    void foo() {
-        cout << "first" << endl;
-    }
-}
+void foo() { cout << "first" << endl; }
+} // namespace first
 
 namespace third::second {
-    void foo() {
-        cout << "second" << endl;
-    }
-}
+void foo() { cout << "second" << endl; }
+} // namespace third::second
 
 int main() {
-    first::foo();
+  first::foo();
 
-    third::second::foo();
+  third::second::foo();
 
-    return 0;
+  return 0;
 }
