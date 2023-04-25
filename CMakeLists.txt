@@ -3,4 +3,4 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(untitled stl/set.cpp)
+add_executable(untitled stl/map.cpp)
