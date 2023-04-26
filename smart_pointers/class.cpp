@@ -3,46 +3,47 @@
 
 using std::cout, std::string;
 
-template <typename T> class SmartPointer {
+template<typename T>
+class SmartPointer {
 public:
-  SmartPointer(T *ptr) {
-    this->ptr = ptr;
-    refCount = new int(1);
-  }
-
-  SmartPointer(const SmartPointer<T> &other) {
-    this->ptr = other.ptr;
-    this->refCount = other.refCount;
-    (*this->refCount)++;
-  }
-
-  ~SmartPointer() {
-    (*this->refCount)--;
-
-    if (*this->refCount == 0) {
-      delete this->ptr;
+    SmartPointer(T* ptr) {
+        this->ptr = ptr;
+        refCount = new int(1);
     }
-  }
 
-  T &operator*() { return *this->ptr; }
+    SmartPointer(const SmartPointer<T>& other) {
+        this->ptr = other.ptr;
+        this->refCount = other.refCount;
+        (*this->refCount)++;
+    }
 
-  friend std::ostream &operator<< <>(std::ostream &os, const SmartPointer &ptr);
+    ~SmartPointer() {
+        (*this->refCount)--;
+
+        if (*this->refCount == 0) {
+            delete this->ptr;
+        }
+    }
+
+    T& operator*() { return *this->ptr; }
+
+    friend std::ostream& operator<< <>(std::ostream& os, const SmartPointer& ptr);
 
 private:
-  T *ptr;
-  int *refCount;
+    T* ptr;
+    int* refCount;
 };
 
-template <typename T>
-std::ostream &operator<<(std::ostream &os, const SmartPointer<T> &ptr) {
-  os << &ptr.ptr;
-  return os;
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const SmartPointer<T>& ptr) {
+    os << &ptr.ptr;
+    return os;
 }
 
 int main() {
-  SmartPointer ptr = new double(5);
+    SmartPointer ptr = new double(5);
 
-  SmartPointer ptr2 = ptr;
+    SmartPointer ptr2 = ptr;
 
-  return 0;
+    return 0;
 }

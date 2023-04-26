@@ -3,18 +3,18 @@
 
 namespace point {
 
-class Point {
-public:
-  double getX() const;
-  double getY() const;
-  void setX(double x);
-  void setY(double y);
+    class Point {
+    public:
+        double getX() const;
+        double getY() const;
+        void setX(double x);
+        void setY(double y);
 
-private:
-  double x;
-  double y;
-};
+    private:
+        double x;
+        double y;
+    };
 
-} // namespace point
+}// namespace point
 
-#endif // UNTITLED_POINT_H
+#endif// UNTITLED_POINT_H

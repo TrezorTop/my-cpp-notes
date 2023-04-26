@@ -6,33 +6,33 @@ using std::cout, std::string;
 
 // DEPRECATED
 void autoPointer() {
-  std::auto_ptr<int> ap(new int(5));
+    std::auto_ptr<int> ap(new int(5));
 
-  std::auto_ptr<int> ap2(ap);
+    std::auto_ptr<int> ap2(ap);
 }
 
 void uniquePointer() {
-  std::unique_ptr<int> up(new int(5));
+    std::unique_ptr<int> up(new int(5));
 
-  std::unique_ptr<int> up2(std::move(up));
+    std::unique_ptr<int> up2(std::move(up));
 
-  //    std::move analog
-  //    up2.swap(up);
+    //    std::move analog
+    //    up2.swap(up);
 
-  //    raw pointer
-  int *ptr = up2.get();
+    //    raw pointer
+    int* ptr = up2.get();
 
-  cout << ptr << '\n';
+    cout << ptr << '\n';
 }
 
 void sharedPointer() {
-  std::shared_ptr<int> sp(new int(5));
+    std::shared_ptr<int> sp(new int(5));
 
-  std::shared_ptr<int> sp2(sp);
+    std::shared_ptr<int> sp2(sp);
 }
 
 int main() {
-  sharedPointer();
+    sharedPointer();
 
-  return 0;
+    return 0;
 }

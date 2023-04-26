@@ -2,135 +2,135 @@
 
 using namespace std;
 
-int strlen(char *str) {
-  int counter = 0;
+int strlen(char* str) {
+    int counter = 0;
 
-  while (str[counter] != '\0') {
-    counter++;
-  }
+    while (str[counter] != '\0') {
+        counter++;
+    }
 
-  return counter;
+    return counter;
 }
 
 class String {
 private:
-  char *str;
-  int length;
+    char* str;
+    int length;
 
-  void copyChars(char *&to, char *from) {
-    int length = strlen(from);
+    void copyChars(char*& to, char* from) {
+        int length = strlen(from);
 
-    to = new char[length + 1];
+        to = new char[length + 1];
 
-    for (int i = 0; i < length; i++) {
-      to[i] = from[i];
+        for (int i = 0; i < length; i++) {
+            to[i] = from[i];
+        }
+
+        to[length] = '\0';
     }
-
-    to[length] = '\0';
-  }
 
 public:
-  int Size() { return this->length; }
+    int Size() { return this->length; }
 
-  String() {
-    this->str = nullptr;
-    this->length = 0;
-  }
-
-  String(char *str) {
-    this->length = strlen(str);
-
-    this->copyChars(this->str, str);
-  }
-
-  ~String() { delete[] this->str; }
-
-  String &operator=(const String &other) {
-    if (&this->str == &other.str)
-      return *this;
-
-    delete[] this->str;
-
-    this->copyChars(this->str, other.str);
-
-    this->length = other.length;
-
-    return *this;
-  }
-
-  String operator+(const String &other) {
-    String newStr;
-
-    int length = this->length + other.length;
-
-    newStr.str = new char[length + 1];
-
-    for (int i = 0; i < this->length; i++) {
-      newStr.str[i] = this->str[i];
+    String() {
+        this->str = nullptr;
+        this->length = 0;
     }
 
-    for (int i = 0; i < other.length; i++) {
-      newStr.str[i + this->length] = other.str[i];
+    String(char* str) {
+        this->length = strlen(str);
+
+        this->copyChars(this->str, str);
     }
 
-    newStr.str[length] = '\0';
-    newStr.length = length;
+    ~String() { delete[] this->str; }
 
-    return newStr;
-  }
+    String& operator=(const String& other) {
+        if (&this->str == &other.str)
+            return *this;
 
-  bool operator==(const String &other) {
-    if (&this->str == &other.str)
-      return true;
-    if (this->length != other.length)
-      return false;
+        delete[] this->str;
 
-    for (int i = 0; i < this->length; ++i) {
-      if (this->str[i] != other.str[i])
-        return false;
+        this->copyChars(this->str, other.str);
+
+        this->length = other.length;
+
+        return *this;
     }
 
-    return true;
-  }
+    String operator+(const String& other) {
+        String newStr;
 
-  bool operator!=(const String &other) { return !this->operator==(other); }
+        int length = this->length + other.length;
 
-  char &operator[](int index) {
-    if (index >= this->length || index < 0)
-      throw std::invalid_argument("Out Of Range Exception");
+        newStr.str = new char[length + 1];
 
-    return this->str[index];
-  }
+        for (int i = 0; i < this->length; i++) {
+            newStr.str[i] = this->str[i];
+        }
 
-  String(const String &other) {
-    this->length = other.length;
-    this->copyChars(this->str, other.str);
-  }
+        for (int i = 0; i < other.length; i++) {
+            newStr.str[i + this->length] = other.str[i];
+        }
 
-  String(String &&other) {
-    this->length = other.length;
-    this->str = other.str;
+        newStr.str[length] = '\0';
+        newStr.length = length;
 
-    other.str = nullptr;
-  }
+        return newStr;
+    }
 
-  friend ostream &operator<<(ostream &os, const String &str);
+    bool operator==(const String& other) {
+        if (&this->str == &other.str)
+            return true;
+        if (this->length != other.length)
+            return false;
 
-  int Length() { return this->length; }
+        for (int i = 0; i < this->length; ++i) {
+            if (this->str[i] != other.str[i])
+                return false;
+        }
+
+        return true;
+    }
+
+    bool operator!=(const String& other) { return !this->operator==(other); }
+
+    char& operator[](int index) {
+        if (index >= this->length || index < 0)
+            throw std::invalid_argument("Out Of Range Exception");
+
+        return this->str[index];
+    }
+
+    String(const String& other) {
+        this->length = other.length;
+        this->copyChars(this->str, other.str);
+    }
+
+    String(String&& other) {
+        this->length = other.length;
+        this->str = other.str;
+
+        other.str = nullptr;
+    }
+
+    friend ostream& operator<<(ostream& os, const String& str);
+
+    int Length() { return this->length; }
 };
 
-ostream &operator<<(ostream &os, const String &str) {
-  os << str.str;
-  return os;
+ostream& operator<<(ostream& os, const String& str) {
+    os << str.str;
+    return os;
 }
 
 int main() {
-  String str = "Hello";
-  String str2 = " World";
+    String str = "Hello";
+    String str2 = " World";
 
-  String test;
+    String test;
 
-  test = str + str2;
+    test = str + str2;
 
-  cout << test << endl;
+    cout << test << endl;
 }

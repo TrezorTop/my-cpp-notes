@@ -5,13 +5,13 @@
 using std::cout, std::string;
 
 int main() {
-  std::forward_list<int> forwardList;
+    std::forward_list<int> forwardList;
 
-  forwardList.push_front(1);
-  forwardList.push_front(2);
-  forwardList.push_front(3);
+    forwardList.push_front(1);
+    forwardList.push_front(2);
+    forwardList.push_front(3);
 
-  std::forward_list<int>::iterator iterator = forwardList.begin();
+    std::forward_list<int>::iterator iterator = forwardList.begin();
 
-  cout << *++iterator << '\n';
+    cout << *++iterator << '\n';
 }
