@@ -49,11 +49,17 @@ cmake_ninja_workdir = C$:/Users/Andrey/CLionProjects/untitled/cmake-build-debug/
 
 build cmake_object_order_depends_target_untitled: phony || CMakeFiles/untitled.dir
 
-build CMakeFiles/untitled.dir/thread/thread.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/Andrey/CLionProjects/untitled/thread/thread.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\thread\thread.cpp.obj.d
+build CMakeFiles/untitled.dir/algorithm/Person/Person.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/Andrey/CLionProjects/untitled/algorithm/Person/Person.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\algorithm\Person\Person.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++20
   OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\thread
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\algorithm\Person
+
+build CMakeFiles/untitled.dir/algorithm/min_max_element.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/Andrey/CLionProjects/untitled/algorithm/min_max_element.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\algorithm\min_max_element.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++20
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\algorithm
 
 
 # =============================================================================
@@ -63,7 +69,7 @@ build CMakeFiles/untitled.dir/thread/thread.cpp.obj: CXX_COMPILER__untitled_Debu
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/thread/thread.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/algorithm/Person/Person.cpp.obj CMakeFiles/untitled.dir/algorithm/min_max_element.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir
