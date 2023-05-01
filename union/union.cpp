@@ -8,12 +8,12 @@ union Union {
 };
 
 int main() {
-    Union anUnion{};
+  Union anUnion{};
 
-    anUnion._char = 'c';
-    anUnion._shortInt = 5;
-    anUnion._int = 2000000;
-    anUnion._float = -5.21;
+  anUnion._char = 'c';
+  anUnion._shortInt = 5;
+  anUnion._int = 2000000;
+  anUnion._float = -5.21;
 
-    return 0;
+  return 0;
 }

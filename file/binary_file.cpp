@@ -9,21 +9,23 @@ string filePath = filesystem::current_path().parent_path().string() + "/file/";
 string fileName = "example.txt";
 
 class Point {
-public:
-  Point() { this->x = this->y = this->z = 0; }
+  public:
+    Point() {
+      this->x = this->y = this->z = 0;
+    }
 
-  Point(int x, int y, int z) {
-    this->x = x;
-    this->y = y;
-    this->z = z;
-  }
+    Point(int x, int y, int z) {
+      this->x = x;
+      this->y = y;
+      this->z = z;
+    }
 
-private:
-  int x, y, z;
+  private:
+    int x, y, z;
 
-  friend ostream &operator<<(ostream &os, const Point &point);
+    friend ostream &operator<<(ostream &os, const Point &point);
 
-  friend istream &operator>>(istream &is, Point &point);
+    friend istream &operator>>(istream &is, Point &point);
 };
 
 ostream &operator<<(ostream &os, const Point &point) {
@@ -69,8 +71,7 @@ void readBinaryFile() {
 
   while (true) {
     fin >> point;
-    if (fin.eof())
-      break;
+    if (fin.eof()) break;
     cout << point << endl;
   }
 

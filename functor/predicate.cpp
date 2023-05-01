@@ -3,24 +3,24 @@
 #include <vector>
 
 class PositiveNumber {
-public:
+  public:
     PositiveNumber(int number) {
-        this->number = number;
+      this->number = number;
     }
 
     int number;
 
     bool operator()(const PositiveNumber& number) {
-        return number.number > 0;
+      return number.number > 0;
     }
 };
 
 int main() {
-    std::vector<PositiveNumber> positiveNumbers = {1, 2, -5, 6, -2};
+  std::vector<PositiveNumber> positiveNumbers = {1, 2, -5, 6, -2};
 
-    int result = std::count_if(positiveNumbers.begin(), positiveNumbers.end(), positiveNumbers.front());
+  int result = std::count_if(positiveNumbers.begin(), positiveNumbers.end(), positiveNumbers.front());
 
-    std::cout << result << '\n';
+  std::cout << result << '\n';
 
-    return 0;
+  return 0;
 }

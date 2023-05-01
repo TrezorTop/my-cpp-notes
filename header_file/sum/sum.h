@@ -3,4 +3,4 @@
 
 int sum(int a, int b);
 
-#endif// UNTITLED_SUM_H
+#endif  // UNTITLED_SUM_H

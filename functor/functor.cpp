@@ -1,23 +1,23 @@
 #include <iostream>
 
 class Functor {
-public:
+  public:
     int operator()(int a, int b) {
-        this->integer = a + b;
-        std::cout << "Previous result " << integer << '\n';
-        return a + b;
+      this->integer = a + b;
+      std::cout << "Previous result " << integer << '\n';
+      return a + b;
     }
 
-private:
+  private:
     int integer;
 };
 
 int main() {
-    Functor functor{};
+  Functor functor{};
 
-    functor(1, 3);
-    functor(1, 4);
-    functor(1, 5);
-    functor(1, 6);
-    functor(1, 7);
+  functor(1, 3);
+  functor(1, 4);
+  functor(1, 5);
+  functor(1, 6);
+  functor(1, 7);
 }

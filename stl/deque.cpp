@@ -2,5 +2,5 @@
 #include <iostream>
 
 int main() {
-    std::deque<int> deque = {1, 2, 3};
+  std::deque<int> deque = {1, 2, 3};
 }

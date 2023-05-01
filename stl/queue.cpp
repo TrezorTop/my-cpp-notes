@@ -4,23 +4,22 @@
 #include <string>
 
 int main() {
-    std::priority_queue<int> priorityQueue;
+  std::priority_queue<int> priorityQueue;
 
-    priorityQueue.push(1);
-    priorityQueue.push(2);
-    priorityQueue.push(3);
-    priorityQueue.push(4);
+  priorityQueue.push(1);
+  priorityQueue.push(2);
+  priorityQueue.push(3);
+  priorityQueue.push(4);
 
-    priorityQueue.emplace(5);
+  priorityQueue.emplace(5);
 
-    priorityQueue.pop();
+  priorityQueue.pop();
 
-    std::cout << "priorityQueue.top() " << priorityQueue.top() << '\n';
+  std::cout << "priorityQueue.top() " << priorityQueue.top() << '\n';
 
-    while (!priorityQueue.empty())
-        priorityQueue.pop();
+  while (!priorityQueue.empty()) priorityQueue.pop();
 
-    std::cout << "priorityQueue.size() " << priorityQueue.size() << '\n';
+  std::cout << "priorityQueue.size() " << priorityQueue.size() << '\n';
 
-    return 0;
+  return 0;
 }

@@ -1,4 +1,5 @@
 #include <Windows.h>
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -25,7 +26,7 @@ int main() {
   SetConsoleCP(866);
   fs << "Test message" << endl;
 
-  fs.seekg(0, fstream::beg); // return read (get) pointer to the start of stream
+  fs.seekg(0, fstream::beg);  // return read (get) pointer to the start of stream
 
   string str;
   while (getline(fs, str)) {

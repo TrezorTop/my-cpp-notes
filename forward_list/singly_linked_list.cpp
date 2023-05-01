@@ -4,9 +4,9 @@
 
 using std::cout, std::string;
 
-template<typename T>
+template <typename T>
 class List {
-public:
+  public:
     List();
 
     ~List();
@@ -27,17 +27,19 @@ public:
 
     void clear();
 
-    int getSize() { return this->size; }
+    int getSize() {
+      return this->size;
+    }
 
-private:
+  private:
     class Node {
-    public:
+      public:
         T data;
         Node* nextNodePointer;
 
         explicit Node(T data = T(), Node* nextNodePointer = nullptr) {
-            this->data = data;
-            this->nextNodePointer = nextNodePointer;
+          this->data = data;
+          this->nextNodePointer = nextNodePointer;
         }
     };
 
@@ -45,129 +47,126 @@ private:
     Node* head;
 
     Node* getNode(int index) {
-        if (index < 0 || index >= this->size)
-            throw std::out_of_range("Given index is out of bounds");
+      if (index < 0 || index >= this->size) throw std::out_of_range("Given index is out of bounds");
 
-        Node* targetNode = this->head;
+      Node* targetNode = this->head;
 
-        for (int i = 0; i < index; i++) {
-            targetNode = targetNode->nextNodePointer;
-        }
+      for (int i = 0; i < index; i++) {
+        targetNode = targetNode->nextNodePointer;
+      }
 
-        return targetNode;
+      return targetNode;
     }
 };
 
-template<typename T>
+template <typename T>
 List<T>::List() {
-    this->size = 0;
-    this->head = nullptr;
+  this->size = 0;
+  this->head = nullptr;
 }
 
-template<typename T>
-List<T>::~List() { this->clear(); }
+template <typename T>
+List<T>::~List() {
+  this->clear();
+}
 
-template<typename T>
+template <typename T>
 T& List<T>::operator[](int index) {
-    return this->getNode(index)->data;
+  return this->getNode(index)->data;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::insert(T data, int index) {
-    if (index == 0)
-        return this->push_front(data);
-    if (index == this->size)
-        return this->push_back(data);
+  if (index == 0) return this->push_front(data);
+  if (index == this->size) return this->push_back(data);
 
-    Node* previous = this->getNode(index - 1);
+  Node* previous = this->getNode(index - 1);
 
-    previous->nextNodePointer = new Node(data, previous->nextNodePointer);
-    this->size++;
+  previous->nextNodePointer = new Node(data, previous->nextNodePointer);
+  this->size++;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::push_front(T data) {
-    this->head = new Node(data, this->head);
-    this->size++;
+  this->head = new Node(data, this->head);
+  this->size++;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::pop_front() {
-    if (this->head == nullptr)
-        throw std::out_of_range("List is empty");
+  if (this->head == nullptr) throw std::out_of_range("List is empty");
 
-    Node* nodeToDelete = this->head;
+  Node* nodeToDelete = this->head;
 
-    this->head = nodeToDelete->nextNodePointer;
+  this->head = nodeToDelete->nextNodePointer;
 
-    delete nodeToDelete;
-    this->size--;
+  delete nodeToDelete;
+  this->size--;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::push_back(T data) {
-    if (this->head == nullptr) {
-        this->head = new Node(data);
-        this->size++;
-        return;
-    }
-
-    Node* lastNode = getNode(this->size - 1);
-
-    lastNode->nextNodePointer = new Node(data);
+  if (this->head == nullptr) {
+    this->head = new Node(data);
     this->size++;
+    return;
+  }
+
+  Node* lastNode = getNode(this->size - 1);
+
+  lastNode->nextNodePointer = new Node(data);
+  this->size++;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::pop_back() {
-    if (this->head == nullptr)
-        throw std::out_of_range("List is empty");
+  if (this->head == nullptr) throw std::out_of_range("List is empty");
 
-    Node* previous = this->getNode(size - 2);
+  Node* previous = this->getNode(size - 2);
 
-    delete previous->nextNodePointer;
-    previous->nextNodePointer = nullptr;
-    this->size--;
+  delete previous->nextNodePointer;
+  previous->nextNodePointer = nullptr;
+  this->size--;
 }
 
-template<typename T>
+template <typename T>
 void List<T>::clear() {
-    while (this->size) {
-        this->pop_front();
-    }
+  while (this->size) {
+    this->pop_front();
+  }
 }
 
-template<typename T>
+template <typename T>
 void List<T>::remove_at(int index) {
-    if (index == 0) {
-        pop_front();
-        return;
-    }
-    if (index == this->size - 1) {
-        pop_back();
-        return;
-    }
+  if (index == 0) {
+    pop_front();
+    return;
+  }
+  if (index == this->size - 1) {
+    pop_back();
+    return;
+  }
 
-    Node* previous = getNode(index - 1);
-    Node* nodeToDelete;
+  Node* previous = getNode(index - 1);
+  Node* nodeToDelete;
 
-    nodeToDelete = previous->nextNodePointer;
-    previous->nextNodePointer = nodeToDelete->nextNodePointer;
+  nodeToDelete = previous->nextNodePointer;
+  previous->nextNodePointer = nodeToDelete->nextNodePointer;
 
-    delete nodeToDelete;
-    this->size--;
+  delete nodeToDelete;
+  this->size--;
 }
 
 int main() {
-    List<int> list;
+  List<int> list;
 
-    list.push_back(1);
-    list.push_back(2);
-    list.push_back(3);
+  list.push_back(1);
+  list.push_back(2);
+  list.push_back(3);
 
-    for (int i = 0, size = list.getSize(); i < size; i++) {
-        cout << list[i] << '\n';
-    }
+  for (int i = 0, size = list.getSize(); i < size; i++) {
+    cout << list[i] << '\n';
+  }
 
-    return 0;
+  return 0;
 }

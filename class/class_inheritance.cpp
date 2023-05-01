@@ -5,52 +5,70 @@
 using namespace std;
 
 class Human {
-public:
-  Human() { this->meta = "default meta"; }
+  public:
+    Human() {
+      this->meta = "default meta";
+    }
 
-  Human(string meta) { this->meta = meta; }
+    Human(string meta) {
+      this->meta = meta;
+    }
 
-  string name;
+    string name;
 
-  void SetName(string value) { this->name = std::move(value); };
+    void SetName(string value) {
+      this->name = std::move(value);
+    };
 
-  string GetName() { return this->name; }
+    string GetName() {
+      return this->name;
+    }
 
-  void PrintMeta() { cout << this->meta << endl; }
+    void PrintMeta() {
+      cout << this->meta << endl;
+    }
 
-protected:
-  void Say(const string &value) {
-    cout << this->name << " says: " << value << endl;
-  }
+  protected:
+    void Say(const string &value) {
+      cout << this->name << " says: " << value << endl;
+    }
 
-private:
-  string meta;
+  private:
+    string meta;
 };
 
 class Student : public Human {
-public:
-  string group;
+  public:
+    string group;
 };
 
 class Professor : public Human {
-public:
-  Professor() : Human("Professor") {}
+  public:
+    Professor() : Human("Professor") {}
 
-  string subject;
+    string subject;
 };
 
 class Car {
-public:
-  void Describe() { cout << "This is part of car" << endl; }
+  public:
+    void Describe() {
+      cout << "This is part of car" << endl;
+    }
 
-  void Drive() { cout << "Driving" << endl; }
+    void Drive() {
+      cout << "Driving" << endl;
+    }
 };
 
 class Airplane {
-public:
-  void Describe() { cout << "This is part of airplane" << endl; }
+  public:
+    void Describe() {
+      cout << "This is part of airplane" << endl;
+    }
 
-  void Fly() { cout << "Flying" << endl; }
+    void Fly() {
+      cout << "Flying" << endl;
+    }
 };
 
 class FlyingCar : public Car, public Airplane {};
